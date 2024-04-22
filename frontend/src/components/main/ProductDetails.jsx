@@ -3,8 +3,14 @@
 
 import { AddShoppingCartOutlined } from "@mui/icons-material";
 import { Box, Button, Stack, Typography } from "@mui/material";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-const ProductDetails = () => {
+import { useState } from "react";
+
+const ProductDetails = ({ clickProduct }) => {
+  const [selectedImg, setselectedImg] = useState(0);
+
   return (
     <Box
       sx={{
@@ -15,15 +21,25 @@ const ProductDetails = () => {
       }}
     >
       <Box sx={{ display: "flex" }}>
-        <img width={300} src={"src/images/1.jpg"} alt="" />
+        <img
+          width={360}
+          src={
+            clickProduct.attributes.productImg.data[selectedImg].attributes.url
+          }
+          alt=""
+        />
       </Box>
 
       <Box sx={{ py: 2, textAlign: { xs: "center", sm: "left" } }}>
-        <Typography variant="h5">jbjjhhj</Typography>
-        <Typography my={0.4} fontSize={"22px"} color={"crimson"} variant="h6">
-          $566
+        <Typography variant="h5">
+          {clickProduct.attributes.productTitle}
         </Typography>
-        <Typography variant="body1">kjlool</Typography>
+        <Typography my={0.4} fontSize={"22px"} color={"crimson"} variant="h6">
+          ${clickProduct.attributes.productPrice}
+        </Typography>
+        <Typography variant="body1">
+          {clickProduct.attributes.pruductDescription}
+        </Typography>
 
         <Stack
           sx={{ justifyContent: { xs: "center", sm: "left" } }}
@@ -31,18 +47,45 @@ const ProductDetails = () => {
           gap={1}
           my={2}
         >
-          {["src/images/1.jpg", "src/images/2.jpg"].map((item) => {
-            return (
-              <img
-                style={{ borderRadius: 3 }}
-                height={100}
-                width={90}
-                key={item}
-                src={item}
-                alt=""
-              />
-            );
-          })}
+          <ToggleButtonGroup
+            value={selectedImg}
+            exclusive
+            sx={{
+              ".Mui-selected": {
+                border: "1px solid royablue !important",
+                borderRadius: "5px !impottant",
+                opacity: "1",
+                backgroundColor: "initial",
+              },
+            }}
+          >
+            {clickProduct.attributes.productImg.data.map((item, index) => {
+              return (
+                <ToggleButton
+                  key={item.id}
+                  value={index}
+                  sx={{
+                    width: "110px",
+                    height: "110px",
+                    mx: 1,
+                    p: "0",
+                    opacity: "0.5",
+                  }}
+                >
+                  <img
+                    onClick={() => {
+                      setselectedImg(index);
+                    }}
+                    style={{ borderRadius: 3 }}
+                    height={"100%"}
+                    width={"100%"}
+                    src={item.attributes.url}
+                    alt=""
+                  />
+                </ToggleButton>
+              );
+            })}
+          </ToggleButtonGroup>
         </Stack>
 
         <Button

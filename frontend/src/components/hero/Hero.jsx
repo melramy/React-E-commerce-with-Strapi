@@ -19,10 +19,10 @@ import "./slider.css";
 import IconSection from "./IconSection";
 
 const mySlider = [
-  { text: "MEN", link: "src/images/r.jpg" },
-  { text: "Lion", link: "src/images/h.jpg" },
-  { text: "abdo", link: "src/images/abo.jpg" },
-  { text: "nabil", link: "src/images/nabil.jpg" },
+  { text: "MEN", link: "./images/r.jpg" },
+  { text: "Lion", link: "./images/h.jpg" },
+  { text: "abdo", link: "./images/abo.jpg" },
+  { text: "nabil", link: "./images/nabil.jpg" },
 ];
 
 const Hero = () => {
@@ -129,7 +129,7 @@ const Hero = () => {
 
         <Box sx={{ display: { xs: "none", md: "block", minWidth: "26.6%" } }}>
           <Box sx={{ position: "relative" }}>
-            <img width={"100%"} src="src/images/banner-17.jpg" alt="" />
+            <img width={"100%"} src="./images/banner-17.jpg" alt="" />
 
             <Stack
               sx={{
@@ -189,7 +189,7 @@ const Hero = () => {
           </Box>
 
           <Box sx={{ position: "relative" }}>
-            <img width={"100%"} src="src/images/banner-16.jpg" alt="" />
+            <img width={"100%"} src="./images/banner-16.jpg" alt="" />
             <Stack
               sx={{
                 position: "absolute",
